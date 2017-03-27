@@ -1,0 +1,7 @@
+#mapSvg{background-color: #272727;}
+.l0r0 { stroke: #ffffff; stroke-width: 1; stroke-opacity: 0; stroke-dasharray: ; fill: #d0ca8a; fill-opacity: 1.0; }
+.l1r0 { pointer-events: none; stroke: #183f71; stroke-width: 0.1; stroke-opacity: 0.5; stroke-dasharray: ; fill-opacity: 0.0; }
+.l1r1 { pointer-events: none; stroke: #183f71; stroke-width: 0.23125; stroke-opacity: 0.5; stroke-dasharray: ; fill-opacity: 0.0; }
+.l1r2 { pointer-events: none; stroke: #183f71; stroke-width: 0.3625; stroke-opacity: 0.5; stroke-dasharray: ; fill-opacity: 0.0; }
+.l1r3 { pointer-events: none; stroke: #183f71; stroke-width: 0.49375; stroke-opacity: 0.5; stroke-dasharray: ; fill-opacity: 0.0; }
+.l1r4 { pointer-events: none; stroke: #183f71; stroke-width: 0.625; stroke-opacity: 0.5; stroke-dasharray: ; fill-opacity: 0.0; }

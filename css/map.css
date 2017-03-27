@@ -1,0 +1,26 @@
+/*Basic map styles*/
+h1{
+  font-size: larger;
+}
+.polygon {
+  fill: #e5e5e5;
+  stroke: #000;	  
+  stroke-width: 0.2;
+  stroke-opacity: 0.8;
+}
+.polygon:hover{
+  cursor: pointer; cursor: hand;
+}
+.point{
+  fill: #000;
+  stroke-opacity: 0.8;
+}
+.overlay {
+  fill: none;
+  pointer-events: all;
+  stroke-width: 0.0;
+  stroke-opacity: 0.0;
+}
+#extLgnd {
+  overflow: visible;
+}

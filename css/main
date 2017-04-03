@@ -1,0 +1,75 @@
+      .country { stroke: #ffffff; stroke-width: 1; stroke-opacity: 0; stroke-dasharray: ; fill: #d0ca8a; fill-opacity: 0.6; }
+
+      @font-face {
+    font-family: 'adventure'; /*a name to be used later*/
+    src: url('./font/adventure-webfont.woff2') format('woff2'),
+         url('./font/adventure-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+      
+      #logo{
+            position:absolute;
+   top:0;
+   right:10px;
+          z-index:1;
+            
+      }
+      .logo {
+          text-align: right;
+          font-family: 'adventure';
+          font-size: 4em;
+          padding-right: 18px;
+          font-style: italic;
+          background: #ff7b0d;
+          background: -moz-linear-gradient(-45deg,  #ff7b0d 1%, #ffed4c 110%);
+          background: -webkit-linear-gradient(-45deg,  #ff7b0d 1%,#ffed4c 110%);
+          background: linear-gradient(135deg,  #ff7b0d 1%,#ffed4c 110%);
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7b0d', endColorstr='#ffed4c',GradientType=1 );
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          -webkit-text-stroke: 2px black;
+          margin-top:-20px;
+          letter-spacing: 0.04em;
+          overflow:visible;
+          z-index:1;
+          
+          margin-left:auto; margin-right:0;
+}
+      .logoheader{
+          font-family: 'adventure';
+          text-align: right;
+          color:white;
+          font-size: 1em;
+          font-style: italic;
+          margin-left:auto; margin-right:0;
+      }
+html,
+body {
+  margin: 0;
+  overflow: hidden;
+}
+#map{
+position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    width:100%;
+height:100%;
+    background:url('./images/blackgrunge.jpg');
+      }
+    
+    .outline {
+  fill: #fff;
+fill-opacity:0.1;
+  stroke:  grey;
+  stroke-width: 0.2px;
+}
+      
+.riverStyle {
+  stroke: #18406b;
+  stroke-width: 0.3px;
+fill-opacity:0.0;
+    opacity:0.5;
+}

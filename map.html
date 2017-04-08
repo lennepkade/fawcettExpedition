@@ -1,9 +1,9 @@
 
 <!DOCTYPE html>
 <meta charset="utf-8">
-<script src="//d3js.org/d3.v4.min.js"></script>
-<script src="//d3js.org/d3-tile.v0.0.min.js"></script>
-<script src="//d3js.org/topojson.v1.min.js"></script>
+<script src="./js/d3.v4.min.js"></script>
+<script src="./js/d3-tile.v0.0.min.js"></script>
+<script src="./js/topojson.v1.min.js"></script>
 <style>
 
 html,
@@ -13,19 +13,18 @@ body {
 }
 path {
    fill: #c1bb7e;
+    
     /* fill : #fff; */
-fill-opacity: 0.8;
-    mix-blend-mode: multiply;
-
-  stroke: #393939;
-stroke-width:0.2;
+    /* mix-blend-mode: multiply;*/  
+    stroke: #393939;
+    opacity:0.6;
+    stroke-width:0.2;
     vector-effect: non-scaling-stroke; // line height won't scale
      stroke-linejoin: round;
   stroke-linecap: round;
-    overl
 
 }
-    .states {
+.states {
   fill: none;
   stroke: red;
   stroke-linejoin: round;
@@ -141,18 +140,27 @@ var raster = svg.append("g");
 
 var vector = svg.append("path");
 
+  var defs = svg.append("defs");
+    var tiles = tile()
+    
+    var countriesClipPath = defs.append("clipPath")
+    var countriesPath = defs.append("path")
+    
 d3.json("./json/110m.json", function(error, world) {
   if (error) throw error;
 
-  vector
+vector
       .datum(topojson.feature(world, world.objects.countries));
+    
 
   // Compute the projected initial center.
 //  var center = projection([0,0]);
   var center = projection([0,0]);
 
   // Apply a zoom transform equivalent to projection.{scale,translate,center}.
-  svg
+   vector
+       .attr("d", path);
+    svg
       .call(zoom)
       .call(zoom.transform, d3.zoomIdentity
           .translate(width / 2, height / 2)
@@ -160,58 +168,64 @@ d3.json("./json/110m.json", function(error, world) {
           .translate(-center[0], -center[1]));
     
     
-var tiles = tile();
 
-  var defs = svg.append("defs");
-
-  defs.append("path")
-      .attr("id", "land")
+    countriesPath = countriesPath
+      .attr("id", "states")
       .datum(topojson.feature(world, world.objects.countries))
       .attr("d", path);
 
-  defs.append("clipPath")
+  countriesClipPath = countriesClipPath
       .attr("id", "clip")
-    .append("use")
-      .attr("xlink:href", "#land");
-
-
+      .append("use")
+      .attr("xlink:href", "#states");
 });
+    
 
+    
 function zoomed() {
+
+   //   .attr("xlink:href", function(d) { return "./images/relief/"+ d[2] + "/" + d[0] + "/" + ((1 << d[2]) - d[1] - 1)+".png"; })
   var transform = d3.event.transform;
+  projection
+      .scale(transform.k / tau)
+      .translate([transform.x, transform.y]);
 
   var tiles = tile
       .scale(transform.k)
       .translate([transform.x, transform.y])
       ();
-
-  projection
-      .scale(transform.k / tau)
-      .translate([transform.x, transform.y]);
-
-  vector
+vector
       .attr("d", path);
-  svg.append("g")
+    
+/* svg.append("g")
       .attr("clip-path", "url(#clip)")
     .selectAll("image")
       .data(tiles)
     .enter().append("image")
-      //.attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/mapbox.natural-earth-2/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
-    .attr("xlink:href",function(d){return"./images/relief/"+ d[2] + "/" + d[0] + "/" + ((1 << d[2]) - d[1] - 1)+".png";})
+      .attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/mapbox.natural-earth-2/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
       .attr("width", Math.round(tiles.scale))
       .attr("height", Math.round(tiles.scale))
       .attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
       .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
 
-  svg.append("use")
-      .attr("xlink:href", "#land")
-      .attr("class", "stroke");
- 
-}
+   */
+    var image = raster
+    .attr("clip-path","url(#clip)")
+    //.attr("transform", stringify(tiles.scale, tiles.translate))
+    .selectAll("image")
+    .data(tiles);
 
-function stringify(scale, translate) {
-  var k = scale / 256, r = scale % 1 ? Number : Math.round;
-  return "translate(" + r(translate[0] * scale) + "," + r(translate[1] * scale) + ") scale(" + k + ")";
+  image.exit().remove();
+
+  image.enter().append("image")
+      .attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/mapbox.natural-earth-2/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
+    .attr("width", Math.round(tiles.scale))
+      .attr("height", Math.round(tiles.scale))
+      .attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
+      .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
 }
+    
+    
+
 </script>
     

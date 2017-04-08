@@ -14,7 +14,7 @@ path {
    fill: #c1bb7e;
     
     /* fill : #fff; */
-    /* mix-blend-mode: multiply;*/  
+    mix-blend-mode: multiply;
     stroke: #393939;
     opacity:0.6;
     stroke-width:0.2;
@@ -139,6 +139,14 @@ var raster = svg.append("g");
 
 var vector = svg.append("path");
 
+//------------------------------
+
+//coordonnees wgs84 de sao Paulo
+var saoPaulo = [-46.593018	-23.58916];
+
+
+//--------------------------------------
+  
   var defs = svg.append("defs");
     var tiles = tile()
     
@@ -154,7 +162,7 @@ vector
 
   // Compute the projected initial center.
 //  var center = projection([0,0]);
-  var center = projection([0,0]);
+  var center = projection([-127,33]);
 
   // Apply a zoom transform equivalent to projection.{scale,translate,center}.
    vector
@@ -165,7 +173,8 @@ vector
           .translate(width / 2, height / 2)
           .scale(1 << 12)
           .translate(-center[0], -center[1]));
-    
+
+      
     
 
     countriesPath = countriesPath
@@ -177,10 +186,9 @@ vector
       .attr("id", "clip")
       .append("use")
       .attr("xlink:href", "#states");
+       
 });
-    
-
-    
+   
 function zoomed() {
 
    //   .attr("xlink:href", function(d) { return "./images/relief/"+ d[2] + "/" + d[0] + "/" + ((1 << d[2]) - d[1] - 1)+".png"; })
@@ -193,8 +201,8 @@ function zoomed() {
       .scale(transform.k)
       .translate([transform.x, transform.y])
       ();
-    
-/* svg.append("g")
+  
+  /* svg.append("g")
       .attr("clip-path", "url(#clip)")
     .selectAll("image")
       .data(tiles)
@@ -206,8 +214,10 @@ function zoomed() {
       .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
 
   */
+     vector
+      .attr("d", path);
           
-     svg.append("g")
+     raster.append("g")
       .attr("clip-path", "url(#clip)")
     .selectAll("image")
       .data(tiles)
@@ -218,17 +228,13 @@ function zoomed() {
       .attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
       .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
 
-  svg.append("use")
-      .attr("xlink:href", "#land")
-      .attr("class", "stroke")
-    ;
-    
+      
   d3.selectAll("path")
     .attr("d", path);
-    
-      
-}
-    
+
+
+  
+};  
 
 </script>
     

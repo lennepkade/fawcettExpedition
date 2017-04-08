@@ -19,10 +19,7 @@ body {
   overflow: hidden;
 }
 path {
-   
-    
     fill: #c1bb7e;
-    
     mix-blend-mode: multiply;    
     stroke: #393939;
     /* fill-rule="evenodd";
@@ -32,90 +29,77 @@ path {
     vector-effect: non-scaling-stroke; // line height won't scale
      
 }
-.states {
-  fill: none;
-  stroke: red;
-  stroke-linejoin: round;
-  stroke-width: 1.5px;
+.river{
+    stroke-width:1;
+    stroke:#4779aa;
+    fill-rule="evenodd";
+    fill:none;
+    opacity:0.7;
 }
-    .river{
-        stroke-width:1;
-        stroke:#4779aa;
-        fill-rule="evenodd";
-        fill:none;
-    }
-    #background {
-        position:absolute;
-        top:0;
-        background: url(./images/blackgrunge.jpg);
-        bottom;0;
-        left:0;
-        right:0;
-        width:100%;
-        height:100%;
-        z-index:-1;
-    }
-    #map{
-position:absolute;
+#background {
+    position:absolute;
+    top:0;
+    background: url(./images/blackgrunge.jpg);
+    bottom;0;
+    left:0;
+    right:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+}
+#map{
+    position:absolute;
     left:0px;
     right:0px;
     top:0px;
     bottom:0px;
     width:100%;
-height:100%;
-            
-    }
-      @font-face {
+    height:100%;
+}
+@font-face {
     font-family: 'adventure'; /*a name to be used later*/
     src: url('./font/adventure-webfont.woff2') format('woff2'),
-         url('./font/adventure-webfont.woff') format('woff');
+     url('./font/adventure-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
-      
-      #logo{
-            position:absolute;
-   top:0;
-   right:10px;
-          z-index:1;
-            
-      }
-      .logo {
-          text-align: right;
-          font-family: 'adventure';
-          font-size: 4em;
-          padding-right: 18px;
-          font-style: italic;
-          background: #ff7b0d;
-          background: -moz-linear-gradient(-45deg,  #ff7b0d 1%, #ffed4c 110%);
-          background: -webkit-linear-gradient(-45deg,  #ff7b0d 1%,#ffed4c 110%);
-          background: linear-gradient(135deg,  #ff7b0d 1%,#ffed4c 110%);
-          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7b0d', endColorstr='#ffed4c',GradientType=1 );
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          -webkit-text-stroke: 2px black;
-          margin-top:-20px;
-          letter-spacing: 0.04em;
-          overflow:visible;
-          z-index:1;
-          
-          margin-left:auto; margin-right:0;
+
+#logo{
+    position:absolute;
+    top:0;
+    right:10px;
+    z-index:1;
+
 }
-      .logoheader{
-          font-family: 'adventure';
-          text-align: right;
-          font-size: 1em;
-          font-style: italic;
-          margin-left:auto; margin-right:0;
-      }
-    
-.tile {
-  pointer-events: none;
-  position: absolute;
-  width: 256px;
-  height: 256px;
-    z-index:12;
+.logo {
+    text-align: right;
+    font-family: 'adventure';
+    font-size: 4em;
+    padding-right: 18px;
+    font-style: italic;
+    background: #ff7b0d;
+    background: -moz-linear-gradient(-45deg,  #ff7b0d 1%, #ffed4c 110%);
+    background: -webkit-linear-gradient(-45deg,  #ff7b0d 1%,#ffed4c 110%);
+    background: linear-gradient(135deg,  #ff7b0d 1%,#ffed4c 110%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7b0d', endColorstr='#ffed4c',GradientType=1 );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px black;
+    margin-top:-20px;
+    letter-spacing: 0.04em;
+    overflow:visible;
+    z-index:1;
+    margin-left:auto; margin-right:0;
 }
+
+.logoheader{
+    font-family: 'adventure';
+    text-align: right;
+    font-size: 1em;
+    font-style: italic;
+    margin-left:auto; margin-right:0;
+}
+
  
 </style>
 <body>  
@@ -129,6 +113,7 @@ var width = Math.max(960, window.innerWidth),
     height = Math.max(500, window.innerHeight);
 
 // Initialize the projection to fit the world in a 1×1 square centered at the origin.
+    
 var projection = d3.geoMercator()
     .scale(1 / tau)
     .translate([0, 0]);
@@ -146,40 +131,41 @@ var zoom = d3.zoom()
 var svg = d3.select("svg")
     .attr("width", width)
     .attr("height", height);
-
+    
 var raster = svg.append("g");
 
 var vector = svg.append("path");
 
-  var defs = svg.append("defs");
-    var tiles = tile()
-    
-    var countriesClipPath = defs.append("clipPath")
-    var countriesPath = defs.append("path")
+var defs = svg.append("defs");
 
-    d3.queue()
+var tiles = tile()
+
+var countriesClipPath = defs.append("clipPath")
+var countriesPath = defs.append("path")
+
+d3.queue()
 	.defer(d3.json, './json/countries.topojson')
 	.defer(d3.json, './json/rivers.topojson')
 	.await(dataJson);    
+    
  function dataJson(error, world, rivers) {
+     
+//vector.datum(topojson.feature(rivers, rivers.objects.river));
 
-vector
-      .datum(topojson.feature(rivers, rivers.objects.river));
-
-        svg.selectAll(".river")
-  .data(topojson.feature(rivers,rivers.objects.river).features)
-.enter().append("path")
-  .attr("class", function(d) { return "river " + d.id; })
-  .attr("d", path);
+svg.selectAll(".river")
+    .data(topojson.feature(rivers,rivers.objects.river).features)
+    .enter().append("path")
+    .attr("class", function(d) { return "river " + d.id; })
+    .attr("d", path);
      //attr("id","states").datum(topojson.feature(rivers, rivers.objects.river)).attr("d",path).attr("class",".river");
      
- vector
-      .datum(topojson.feature(world, world.objects.countries));
+vector
+    .datum(topojson.feature(world, world.objects.countries));
     
 
   // Compute the projected initial center.
 //  var center = projection([0,0]);
-  var center = projection([0,0]);
+  var center = projection([-120,37]);
 
   // Apply a zoom transform equivalent to projection.{scale,translate,center}.
    vector
@@ -188,10 +174,8 @@ vector
       .call(zoom)
       .call(zoom.transform, d3.zoomIdentity
           .translate(width / 2, height / 2)
-          .scale(1 << 12)
-          .translate(-center[0], -center[1]));
-    
-    
+          .scale(6000)
+          .translate(-center[0], -center[1]));    
 
     countriesPath = countriesPath
       .attr("id", "states")
@@ -210,6 +194,7 @@ function zoomed() {
 
    //   .attr("xlink:href", function(d) { return "./images/relief/"+ d[2] + "/" + d[0] + "/" + ((1 << d[2]) - d[1] - 1)+".png"; })
   var transform = d3.event.transform;
+    
   projection
       .scale(transform.k / tau)
       .translate([transform.x, transform.y]);
@@ -219,21 +204,6 @@ function zoomed() {
       .translate([transform.x, transform.y])
       ();
     
-/* svg.append("g")
-      .attr("clip-path", "url(#clip)")
-    .selectAll("image")
-      .data(tiles)
-    .enter().append("image")
-      .attr("xlink:href", function(d) { return "http://" + ["a", "b", "c", "d"][Math.random() * 4 | 0] + ".tiles.mapbox.com/v3/mapbox.natural-earth-2/" + d[2] + "/" + d[0] + "/" + d[1] + ".png"; })
-      .attr("width", Math.round(tiles.scale))
-      .attr("height", Math.round(tiles.scale))
-      .attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
-      .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
-
-  */
-     vector
-      .attr("d", path);
-          
      raster.append("g")
       .attr("clip-path", "url(#clip)")
     .selectAll("image")
@@ -246,12 +216,31 @@ function zoomed() {
       .attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
       .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
 
-      
-    
-    
   d3.selectAll("path")
     .attr("d", path);
       
-}
-</script>
     
+}
+
+function zoomTo(location, scale) {
+  
+ var point = projection(location);
+    
+    var transformIdentity = d3.zoomIdentity
+        //.translate(width / 2, height / 2)
+        .translate(width / 2 - point[0], height / 2 - point[1])
+        .scale(scale);
+    
+    console.log('zoom to '+location);
+    
+  svg.append('path').call(zoom.transform, transformIdentity);
+}
+
+var sf = [-122.417, 37.775],
+    ny = [-74.0064, 40.7142];
+
+//zoomTo(ny,8000);
+    
+</script>
+<a href="#" onclick="zoomTo(ny,6000)">CLICK ICI</a>
+

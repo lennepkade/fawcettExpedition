@@ -51,7 +51,7 @@ path {
     right:0;
     width:100%;
     height:100%;
-    z-index:-1;
+    z-index:1;
 }
 #map{
     position:absolute;
@@ -74,7 +74,7 @@ path {
     position:absolute;
     top:0;
     right:10px;
-    z-index:1;
+    z-index:10;
 
 }
 .logo {
@@ -94,8 +94,8 @@ path {
     margin-top:-20px;
     letter-spacing: 0.04em;
     overflow:visible;
-    z-index:1;
-    margin-left:auto; margin-right:0;
+    z-index:10;
+    margin-left:auto; margin-right:20px;
 }
 
 .logoheader{
@@ -103,14 +103,18 @@ path {
     text-align: right;
     font-size: 1em;
     font-style: italic;
-    margin-left:auto; margin-right:0;
+    margin-left:auto; margin-right:20px;
 }
 
     #tale    {
+        position:absolute;
         float:right;
+top:0;
+        bottom:0;
+        right:5px;
         width:50%;
-    height:85vh;
-        z-index:99;
+        padding-top: 100px;
+        z-index:9;
         overflow-y:scroll;
         overflow-x: hidden;
     }
@@ -134,8 +138,14 @@ console.log(imagePos)
 		});
 	});
 </script>
-    <div id="background"> <div id="logo" ><div class="logoheader">The last journey of</div><div class="logo"><b>FAWCETT </b></div>
-        <div class="logoheader" style='margin-top:-10px'>An interactive story map</div><div id="tale">
+    <div id="background"> 
+        <div id="logo" ><div class="logoheader">The last journey of</div><div class="logo"><b>FAWCETT </b></div>
+        <div class="logoheader" style='margin-top:-10px'>An interactive story map</div>
+        
+        
+    
+    </div> 
+        <div id="tale">
      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 <br><br>
@@ -168,9 +178,12 @@ console.log(imagePos)
      <h2> Dead horse camp</h2>
      
      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-</div></div> <svg></svg>
+</div> <svg></svg>
+           
+        
+   
     </div>
-    
+ 
     
 <script>
 var pi = Math.PI,

@@ -4,15 +4,18 @@
 <title>The last journey of Fawcett - An interactive map</title>
 <meta property="og:title" content="The last journey of Fawcett - An interactive map"/>
 <meta property="og:type" content="website"/>
-<meta property="og:description" content="The last journey of Fawcett is an interactive webmap done with D3js library. You can follow the last trip of Terry Fawcett throught the amazonian forest."/>
+<meta property="og:description" content="The last journey of Fawcett is an interactive webmap done with D3js library. You can follow the last trip of Percy Fawcett throught the amazonian forest."/>
 <meta property="og:url" content="https://www.karasiak.net/fawcett/"/>
 <meta property="og:site_name" content="Last Journey of Fawcett"/>
 
 <script src="./js/d3.v4.min.js"></script>
 <script src="./js/d3-tile.v0.0.min.js"></script>
 <script src="./js/topojson.v1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./css/scrollbar.css" />
-
+<script src="./js/jquery-1.6.1.min.js"></script>
+<link rel="stylesheet" href="./css/scrollbar.css"/>
+<link rel="stylesheet" href="./css/animations.css">
+<link rel="stylesheet" href="./css/polaroid.css">
+<link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
 <style>
 
 html,
@@ -109,26 +112,53 @@ path {
     height:85vh;
         z-index:99;
         overflow-y:scroll;
+        overflow-x: hidden;
     }
+    #object{
+	visibility: hidden;
+}
+
 </style>
+
 <body>  
- <div id="background"> <div id="logo" ><div class="logoheader">The last journey of</div><div class="logo"><b>FAWCETT </b></div>
+<script>
+	$(window).scroll(function() {
+		$('#object').each(function(){
+		var imagePos = $(this).offset().top;
+console.log(imagePos)
+		var topOfWindow = $(window).scrollTop();
+			console.log(topOfWindow);
+            if (imagePos < topOfWindow+400) {
+				$(this).addClass("slideLeft");
+			}
+		});
+	});
+</script>
+    <div id="background"> <div id="logo" ><div class="logoheader">The last journey of</div><div class="logo"><b>FAWCETT </b></div>
         <div class="logoheader" style='margin-top:-10px'>An interactive story map</div><div id="tale">
      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 
 <br><br>
-<h1> Who is Terry Fawcett ? </h1>
+<h1> Who is Percy Fawcett ? </h1>
+   <div id="polaroid"> <!--place the everything inside a div and give it an id or class for styling-->
+<!--Image One-->
+<figure> <!--use figure to contain each image and caption-->
+<img src="images/fawcett_look.jpg" width="400" alt="Percy Fawcett at his desk" /> <!--the image-->
+<figcaption>Percy Fawcett at his desk</figcaption> <!--the caption that appears below the image-->
+</figure>
+</div> <!--end polaroid-->
      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 <br><br>
      <h1> His numberith departure </h1>
      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 <br><br>
+        
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
      <br><br>
      <h1> The last journey </h1>
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-     
+       
      <h2> Sao Paolo arrival </h2>
      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
      
@@ -136,9 +166,12 @@ path {
      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
      <br><br>
      <h2> Dead horse camp</h2>
+     
      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 </div></div> <svg></svg>
     </div>
+    
+    
 <script>
 var pi = Math.PI,
     tau = 2 * pi;
@@ -232,7 +265,7 @@ function zoomed() {
   projection
       .scale(transform.k / tau)
       .translate([transform.x, transform.y]);
-/* // DISABLE TILES 
+/*
   var tiles = tile
       .scale(transform.k)
       .translate([transform.x, transform.y])
@@ -267,7 +300,6 @@ function zoomTo(location, scale) {
           .translate(-point[0], -point[1])
         .scale(scale);
     
-    console.log('zoom to '+location);
     
   svg.append('path').call(zoom.transform, transformIdentity);
 }
@@ -275,8 +307,16 @@ function zoomTo(location, scale) {
 var sf = [-122.417, 37.775],
     ny = [-74.0064, 40.7142];
 
-//zoomTo(ny,8000);
-    
+      function loop() {
+    d3.selectAll('path').transition()
+      .duration(900)
+        .call(zoom.transform, zoomTo(ny, 6000))
+      .transition() 
+      .duration(900)
+        .call(zoom.transform, zoomTo(sf, 4000))
+  }
+
 </script>
 <a href="#" onclick="zoomTo(sf,6000)">CLICK ICI</a>
 
+</body>

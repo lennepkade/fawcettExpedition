@@ -99,6 +99,7 @@ d3.queue()
 
 vector
     .datum(topojson.feature(world, world.objects.countries))
+     .attr("class","land");
     
   // Compute the projected initial center.
 //  var center = projection([0,0]);

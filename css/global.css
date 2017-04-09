@@ -9,13 +9,16 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Homemade Apple', cursive;  font-weight:40
 #content{
     width:100%;
 }
+svg{
+pointer-events: all;
+}
 .land {
     fill: #c1bb7e;
     mix-blend-mode: normal;    
     stroke: #393939;
     /* fill-rule="evenodd";
     stroke-linejoin="round"; */
-    opacity:0.8;
+    opacity:1;
     stroke-width:1; 
     stroke-dasharray:3,5;
     stroke-opacity:0.7;
@@ -71,7 +74,6 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Homemade Apple', cursive;  font-weight:40
 .country-label {
     font-family: 'Playfair Display', serif;
     color:black;
-    font-weight:400;
     font-size:1.4em;
     opacity:0.8;
     font-variant-caps: all-small-caps;
@@ -125,7 +127,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Homemade Apple', cursive;  font-weight:40
         z-index:9;
         overflow-y:scroll;
         overflow-x: hidden;
-        font-family: 'Habibi', serif;
+        font-family: 'Habibi';
         color: #e8dea5;
     }
     #object{

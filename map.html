@@ -57,17 +57,16 @@ var svg = d3.select("svg")
     .attr("width", width)
     .attr("height", height);
     
-var raster = svg.append("g");
+//var raster = svg.append("g");
 
 var vector = svg.append("path");
 
-var defs = svg.append("defs");
+//var defs = svg.append("defs");
+//var tiles = tile()
+//var countriesClipPath = defs.append("clipPath");
+//var countriesPath = defs.append("path");
+var labels = svg.selectAll("text");
 
-var tiles = tile()
-
-var countriesClipPath = defs.append("clipPath");
-var countriesPath = defs.append("path");
-var labels = svg.selectAll(".place-label");
     
 d3.queue()
 	.defer(d3.json, './json/countries.topojson')
@@ -75,13 +74,13 @@ d3.queue()
     .defer(d3.json, './json/cities.json')
 	.await(dataJson);    
     
- function dataJson(error, world, rivers, cities) {
+function dataJson(error, world, rivers, cities) {
      
 //vector.datum(topojson.feature(rivers, rivers.objects.river));
 
 // draw rivers
      
- svg.selectAll(".river")
+svg.selectAll(".river")
     .data(topojson.feature(rivers,rivers.objects.river).features)
     .enter().append("path")
     .attr("class","river")
@@ -89,17 +88,17 @@ d3.queue()
      //attr("id","states").datum(topojson.feature(rivers, rivers.objects.river)).attr("d",path).attr("class",".river");
 
 // draw cities
- svg.selectAll(".symbol")
-      .data(cities.features)
+svg.selectAll(".symbol")
+    .data(cities.features)
     .enter().append("path")
-      .attr("class", "symbol")
-     .attr("d",path.pointRadius(5));
+    .attr("class", "symbol")
+    .attr("d",path.pointRadius(5));
  
      //attr("id","states").datum(topojson.feature(rivers, rivers.objects.river)).attr("d",path).attr("class",".river");
 
 vector
     .datum(topojson.feature(world, world.objects.countries))
-     .attr("class","land");
+    .attr("class","land");
     
   // Compute the projected initial center.
 //  var center = projection([0,0]);
@@ -130,19 +129,19 @@ vector
           .data(cities.features)
           .enter().append("text")
           .attr("class", "place-label")
+     .attr("d", path)
           .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })   
           .attr("dy", "-.5em")
           .style("text-anchor", function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; })
           .text(function(d) { return d.properties.NAME_2; });
      
-     console.log(vector.features)
     labels
           .data(topojson.feature(world,world.objects.countries).features)
           .enter().append("text")
           .attr("class", "country-label")
-          .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })   
+          .attr("transform", function(d) { console.log(path.centroid(d)); return "translate(" + path.centroid(d) + ")"; })   
           .style("text-anchor","middle")
-          .text(function(d) { return d.properties.NAME; });
+          .text(function(d) { return d.properties.NAME; }); 
      
 };
 
@@ -153,12 +152,12 @@ function zoomed() {
 
    //   .attr("xlink:href", function(d) { return "./images/relief/"+ d[2] + "/" + d[0] + "/" + ((1 << d[2]) - d[1] - 1)+".png"; })
   var transform = d3.event.transform;
-
-    
+  
     
   projection
       .scale(transform.k / tau)
       .translate([transform.x, transform.y]);
+
 /*
   var tiles = tile
       .scale(transform.k)
@@ -179,11 +178,10 @@ function zoomed() {
 
   */    
     
-    d3.selectAll("path")
-    .attr("d", path);
-
-
-
+d3.selectAll("path")    .attr("d", path);
+    d3.selectAll("text").attr("transform",function(d) { console.log(path.centroid(d)); return "translate(" + path.centroid(d) + ")"; })   ;
+    
+    
 }
 
 function zoomTo(location, scale) {

@@ -6,7 +6,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 { font-family: 'Homemade Apple', cursive;  font-weight:400;}
-
+#content{
+    width:100%;
+}
 .land {
     fill: #c1bb7e;
     mix-blend-mode: normal;    

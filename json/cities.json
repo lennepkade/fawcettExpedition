@@ -1,0 +1,10 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "ID_0": 33, "ISO": "BRA", "NAME_0": "Brazil", "ID_1": 11, "NAME_1": "Mato Grosso do Sul", "ID_2": 1364, "NAME_2": "Corumbá", "HASC_2": null, "CCN_2": 0, "CCA_2": null, "TYPE_2": "Município", "ENGTYPE_2": "Municipality", "NL_NAME_2": null, "VARNAME_2": null }, "geometry": { "type": "Point", "coordinates": [ -56.672887767394101, -18.729402357218255 ] } },
+{ "type": "Feature", "properties": { "ID_0": 33, "ISO": "BRA", "NAME_0": "Brazil", "ID_1": 19, "NAME_1": "Rio de Janeiro", "ID_2": 3630, "NAME_2": "Rio de Janeiro", "HASC_2": null, "CCN_2": 0, "CCA_2": null, "TYPE_2": "Município", "ENGTYPE_2": "Municipality", "NL_NAME_2": null, "VARNAME_2": null }, "geometry": { "type": "Point", "coordinates": [ -43.447627998257637, -22.923354285310587 ] } },
+{ "type": "Feature", "properties": { "ID_0": 33, "ISO": "BRA", "NAME_0": "Brazil", "ID_1": 24, "NAME_1": "São Paulo", "ID_2": 4877, "NAME_2": "São Paulo", "HASC_2": null, "CCN_2": 0, "CCA_2": null, "TYPE_2": "Município", "ENGTYPE_2": "Municipality", "NL_NAME_2": null, "VARNAME_2": null }, "geometry": { "type": "Point", "coordinates": [ -46.648025154707646, -23.650416852417305 ] } }
+]
+}

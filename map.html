@@ -13,175 +13,21 @@
 <script src="./js/topojson.v1.min.js"></script>
 <script src="./js/jquery-1.6.1.min.js"></script>
 <link rel="stylesheet" href="./css/scrollbar.css"/>
-<link rel="stylesheet" href="./css/animations.css">
-<link rel="stylesheet" href="./css/polaroid.css">
+<link rel="stylesheet" href="./css/global.css"/>
+<link rel="stylesheet" href="./css/polaroid.css"/>
 <link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
-<style>
+<link href="https://fonts.googleapis.com/css?family=Habibi" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
 
-html,
-body {
-  margin: 0;
-  overflow: hidden;
 
-}
-path {
-    fill: #c1bb7e;
-    mix-blend-mode: normal;    
-    stroke: #393939;
-    /* fill-rule="evenodd";
-    stroke-linejoin="round"; */
-    opacity:0.6;
-    stroke-width:0.5;
-    vector-effect: non-scaling-stroke; // line height won't scale
-     
-}
-.river{
-    stroke-width:1;
-    stroke:#0c113b;
-    fill-rule="evenodd";
-    fill:none;
-    opacity:0.7;
-}
-#background {
-    position:absolute;
-    top:0;
-    background: url(./images/blackgrunge.jpg);
-    bottom;0;
-    left:0;
-    right:0;
-    width:100%;
-    height:100%;
-    z-index:1;
-}
-#map{
-    position:absolute;
-    left:0px;
-    right:0px;
-    top:0px;
-    bottom:0px;
-    width:100%;
-    height:100%;
-}
-@font-face {
-    font-family: 'adventure'; /*a name to be used later*/
-    src: url('./font/adventure-webfont.woff2') format('woff2'),
-     url('./font/adventure-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-#logo{
-    position:absolute;
-    top:0;
-    right:10px;
-    z-index:10;
-
-}
-.logo {
-    text-align: right;
-    font-family: 'adventure';
-    font-size: 4em;
-    padding-right: 18px;
-    font-style: italic;
-    background: #ff7b0d;
-    background: -moz-linear-gradient(-45deg,  #ff7b0d 1%, #ffed4c 110%);
-    background: -webkit-linear-gradient(-45deg,  #ff7b0d 1%,#ffed4c 110%);
-    background: linear-gradient(135deg,  #ff7b0d 1%,#ffed4c 110%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7b0d', endColorstr='#ffed4c',GradientType=1 );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -webkit-text-stroke: 2px black;
-    margin-top:-20px;
-    letter-spacing: 0.04em;
-    overflow:visible;
-    z-index:10;
-    margin-left:auto; margin-right:20px;
-}
-
-.logoheader{
-    font-family: 'adventure';
-    text-align: right;
-    font-size: 1em;
-    font-style: italic;
-    margin-left:auto; margin-right:20px;
-}
-
-    #tale    {
-        position:absolute;
-        float:right;
-top:0;
-        bottom:0;
-        right:5px;
-        width:50%;
-        padding-top: 100px;
-        z-index:9;
-        overflow-y:scroll;
-        overflow-x: hidden;
-    }
-    #object{
-	visibility: hidden;
-}
-
-</style>
 
 <body>  
-<script>
-	$(window).scroll(function() {
-		$('#object').each(function(){
-		var imagePos = $(this).offset().top;
-console.log(imagePos)
-		var topOfWindow = $(window).scrollTop();
-			console.log(topOfWindow);
-            if (imagePos < topOfWindow+400) {
-				$(this).addClass("slideLeft");
-			}
-		});
-	});
-</script>
     <div id="background"> 
         <div id="logo" ><div class="logoheader">The last journey of</div><div class="logo"><b>FAWCETT </b></div>
         <div class="logoheader" style='margin-top:-10px'>An interactive story map</div>
-        
-        
-    
     </div> 
-        <div id="tale">
-     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-
-<br><br>
-<h1> Who is Percy Fawcett ? </h1>
-   <div id="polaroid"> <!--place the everything inside a div and give it an id or class for styling-->
-<!--Image One-->
-<figure> <!--use figure to contain each image and caption-->
-<img src="./images/fawcett_look.jpg" width="400" alt="Percy Fawcett at his desk" /> <!--the image-->
-<figcaption>Percy Fawcett at his desk</figcaption> <!--the caption that appears below the image-->
-</figure>
-</div> <!--end polaroid-->
-     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-<br><br>
-     <h1> His numberith departure </h1>
-     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-<br><br>
-        
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-     <br><br>
-     <h1> The last journey </h1>
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-       
-     <h2> Sao Paolo arrival </h2>
-     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-     
-     <h2> Compass ?</h2>
-     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-     <br><br>
-     <h2> Dead horse camp</h2>
-     
-     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-</div> <svg></svg>
-           
-        
-   
+        <div id="content"></div>
+        <svg></svg>   
     </div>
  
     
@@ -220,32 +66,44 @@ var defs = svg.append("defs");
 
 var tiles = tile()
 
-var countriesClipPath = defs.append("clipPath")
-var countriesPath = defs.append("path")
-
+var countriesClipPath = defs.append("clipPath");
+var countriesPath = defs.append("path");
+var labels = svg.selectAll(".place-label");
+    
 d3.queue()
 	.defer(d3.json, './json/countries.topojson')
 	.defer(d3.json, './json/rivers.topojson')
+    .defer(d3.json, './json/cities.json')
 	.await(dataJson);    
     
- function dataJson(error, world, rivers) {
+ function dataJson(error, world, rivers, cities) {
      
 //vector.datum(topojson.feature(rivers, rivers.objects.river));
 
-svg.selectAll(".river")
+// draw rivers
+     
+ svg.selectAll(".river")
     .data(topojson.feature(rivers,rivers.objects.river).features)
     .enter().append("path")
-    .attr("class", function(d) { return "river " + d.id; })
+    .attr("class","river")
     .attr("d", path);
      //attr("id","states").datum(topojson.feature(rivers, rivers.objects.river)).attr("d",path).attr("class",".river");
-     
-vector
-    .datum(topojson.feature(world, world.objects.countries));
-    
 
+// draw cities
+ svg.selectAll(".symbol")
+      .data(cities.features)
+    .enter().append("path")
+      .attr("class", "symbol")
+     .attr("d",path.pointRadius(5));
+ 
+     //attr("id","states").datum(topojson.feature(rivers, rivers.objects.river)).attr("d",path).attr("class",".river");
+
+vector
+    .datum(topojson.feature(world, world.objects.countries))
+    
   // Compute the projected initial center.
 //  var center = projection([0,0]);
-  var center = projection([-120,37]);
+  var center = projection([-47,-27]);
 
   // Apply a zoom transform equivalent to projection.{scale,translate,center}.
    vector
@@ -254,10 +112,10 @@ vector
       .call(zoom)
       .call(zoom.transform, d3.zoomIdentity
           .translate(width / 2, height / 2)
-          .scale(6000)
+          .scale(12000)
           .translate(-center[0], -center[1]));    
 
-    countriesPath = countriesPath
+   /* countriesPath = countriesPath
       .attr("id", "states")
       .datum(topojson.feature(world, world.objects.countries))
       .attr("d", path);
@@ -265,8 +123,20 @@ vector
   countriesClipPath = countriesClipPath
       .attr("id", "clip")
       .append("use")
-      .attr("xlink:href", "#states");
+      .attr("xlink:href", "#states"); 
+      */
+     
+     labels
+          .data(cities.features)
+          .enter().append("text")
+          .attr("class", "place-label")
+          .attr("transform", function(d) { return "translate(" + projection(d.geometry.coordinates) + ")"; })   
+          .attr("dy", "-.5em")
+          .style("text-anchor", function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; })
+          .text(function(d) { return d.properties.NAME_2; });
+     
 };
+
     
 
     
@@ -274,6 +144,8 @@ function zoomed() {
 
    //   .attr("xlink:href", function(d) { return "./images/relief/"+ d[2] + "/" + d[0] + "/" + ((1 << d[2]) - d[1] - 1)+".png"; })
   var transform = d3.event.transform;
+
+    
     
   projection
       .scale(transform.k / tau)
@@ -300,7 +172,9 @@ function zoomed() {
     
     d3.selectAll("path")
     .attr("d", path);
-  
+
+
+
 }
 
 function zoomTo(location, scale) {
@@ -330,6 +204,9 @@ var sf = [-122.417, 37.775],
   }
 
 </script>
-<a href="#" onclick="zoomTo(sf,6000)">CLICK ICI</a>
+
+    <!-- load tale from tale.html -->
+    <script> $(document).ready(function(){ $("#content").load("tale.html");}); </script>
+
 
 </body>

@@ -1,0 +1,121 @@
+html,
+body {
+  margin: 0;
+  overflow: hidden;
+
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Homemade Apple', cursive;  font-weight:400;}
+
+path {
+    fill: #c1bb7e;
+    mix-blend-mode: normal;    
+    stroke: #393939;
+    /* fill-rule="evenodd";
+    stroke-linejoin="round"; */
+    opacity:0.6;
+    stroke-width:0.5;    
+    vector-effect: non-scaling-stroke; // line height won't scale
+     
+}
+.river{
+    stroke-width:1;
+    stroke:#0c113b;
+    fill-rule="evenodd";
+    fill:none;
+    opacity:0.4;
+}
+.symbol {
+  fill: black;
+  fill-opacity: 1;
+  stroke: none;
+}
+#background {
+    position:absolute;
+    top:0;
+    background: url(../images/blackgrunge.jpg);
+    bottom;0;
+    left:0;
+    right:0;
+    width:100%;
+    height:100%;
+    z-index:1;
+}
+#map{
+    position:absolute;
+    left:0px;
+    right:0px;
+    top:0px;
+    bottom:0px;
+    width:100%;
+    height:100%;
+}
+@font-face {
+    font-family: 'adventure'; /*a name to be used later*/
+    src: url('../font/adventure-webfont.woff2') format('woff2'),
+     url('../font/adventure-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.place, .place-label {
+    font-family: 'Homemade Apple', cursive;  
+    color:black;
+    font-weight:400;
+}
+        
+
+#logo{
+    position:absolute;
+    top:0;
+    right:10px;
+    z-index:10;
+
+}
+.logo {
+    text-align: right;
+    font-family: 'adventure';
+    font-size: 4em;
+    padding-right: 18px;
+    font-style: italic;
+    background: #ff7b0d;
+    background: -moz-linear-gradient(-45deg,  #ff7b0d 1%, #ffed4c 110%);
+    background: -webkit-linear-gradient(-45deg,  #ff7b0d 1%,#ffed4c 110%);
+    background: linear-gradient(135deg,  #ff7b0d 1%,#ffed4c 110%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff7b0d', endColorstr='#ffed4c',GradientType=1 );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px black;
+    margin-top:-20px;
+    letter-spacing: 0.04em;
+    overflow:visible;
+    z-index:10;
+    margin-left:auto; margin-right:20px;
+}
+
+.logoheader{
+    font-family: 'adventure';
+    text-align: right;
+    font-size: 1em;
+    font-style: italic;
+    margin-left:auto; margin-right:20px;
+}
+
+    #tale    {
+        position:absolute;
+        float:right;
+        top:0;
+        bottom:0;
+        right:5px;
+        width:40%;
+        min-width:400px;
+        padding-top: 100px;
+        z-index:9;
+        overflow-y:scroll;
+        overflow-x: hidden;
+        font-family: 'Habibi', serif;
+        color: #e8dea5;
+    }
+    #object{
+	visibility: hidden;
+}

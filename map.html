@@ -11,27 +11,30 @@
 <script src="./js/d3.v4.min.js"></script>
 <script src="./js/d3-tile.v0.0.min.js"></script>
 <script src="./js/topojson.v1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/scrollbar.css" />
+
 <style>
 
 html,
 body {
   margin: 0;
   overflow: hidden;
+
 }
 path {
     fill: #c1bb7e;
-    mix-blend-mode: multiply;    
+    mix-blend-mode: normal;    
     stroke: #393939;
     /* fill-rule="evenodd";
     stroke-linejoin="round"; */
-    opacity:1;
+    opacity:0.6;
     stroke-width:0.5;
     vector-effect: non-scaling-stroke; // line height won't scale
      
 }
 .river{
     stroke-width:1;
-    stroke:#4779aa;
+    stroke:#0c113b;
     fill-rule="evenodd";
     fill:none;
     opacity:0.7;
@@ -100,11 +103,42 @@ path {
     margin-left:auto; margin-right:0;
 }
 
- 
+    #tale    {
+        float:right;
+        width:50%;
+    height:85vh;
+        z-index:99;
+        overflow-y:scroll;
+    }
 </style>
 <body>  
  <div id="background"> <div id="logo" ><div class="logoheader">The last journey of</div><div class="logo"><b>FAWCETT </b></div>
-        <div class="logoheader" style='margin-top:-10px'>An interactive story map</div></div> <svg></svg></div>
+        <div class="logoheader" style='margin-top:-10px'>An interactive story map</div><div id="tale">
+     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+
+<br><br>
+<h1> Who is Terry Fawcett ? </h1>
+     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+<br><br>
+     <h1> His numberith departure </h1>
+     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+<br><br>
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+     <br><br>
+     <h1> The last journey </h1>
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+     
+     <h2> Sao Paolo arrival </h2>
+     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+     
+     <h2> Compass ?</h2>
+     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+     <br><br>
+     <h2> Dead horse camp</h2>
+     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+</div></div> <svg></svg>
+    </div>
 <script>
 var pi = Math.PI,
     tau = 2 * pi;
@@ -198,7 +232,7 @@ function zoomed() {
   projection
       .scale(transform.k / tau)
       .translate([transform.x, transform.y]);
-
+/* // DISABLE TILES 
   var tiles = tile
       .scale(transform.k)
       .translate([transform.x, transform.y])
@@ -216,10 +250,11 @@ function zoomed() {
       .attr("x", function(d) { return Math.round((d[0] + tiles.translate[0]) * tiles.scale); })
       .attr("y", function(d) { return Math.round((d[1] + tiles.translate[1]) * tiles.scale); });
 
-  d3.selectAll("path")
-    .attr("d", path);
-      
+  */    
     
+    d3.selectAll("path")
+    .attr("d", path);
+  
 }
 
 function zoomTo(location, scale) {
@@ -228,7 +263,8 @@ function zoomTo(location, scale) {
     
     var transformIdentity = d3.zoomIdentity
         //.translate(width / 2, height / 2)
-        .translate(width / 2 - point[0], height / 2 - point[1])
+          .translate(width / 2, height / 2)
+          .translate(-point[0], -point[1])
         .scale(scale);
     
     console.log('zoom to '+location);
@@ -242,5 +278,5 @@ var sf = [-122.417, 37.775],
 //zoomTo(ny,8000);
     
 </script>
-<a href="#" onclick="zoomTo(ny,6000)">CLICK ICI</a>
+<a href="#" onclick="zoomTo(sf,6000)">CLICK ICI</a>
 

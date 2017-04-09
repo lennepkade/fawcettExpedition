@@ -64,7 +64,15 @@ path {
     font-weight:400;
 }
         
-
+.country-label {
+    font-family: 'Playfair Display', serif;
+    color:black;
+    font-weight:400;
+    font-size:1.4em;
+    opacity:0.8;
+    font-variant-caps: all-small-caps;
+}
+  
 #logo{
     position:absolute;
     top:0;

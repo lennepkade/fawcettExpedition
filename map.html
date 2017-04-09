@@ -18,8 +18,7 @@
 <link href="https://fonts.googleapis.com/css?family=Reenie+Beanie" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Habibi" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
-
-
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 
 <body>  
     <div id="background"> 
@@ -134,6 +133,15 @@ vector
           .attr("dy", "-.5em")
           .style("text-anchor", function(d) { return d.geometry.coordinates[0] > -1 ? "start" : "end"; })
           .text(function(d) { return d.properties.NAME_2; });
+     
+     console.log(vector.features)
+    labels
+          .data(topojson.feature(world,world.objects.countries).features)
+          .enter().append("text")
+          .attr("class", "country-label")
+          .attr("transform", function(d) { return "translate(" + path.centroid(d) + ")"; })   
+          .style("text-anchor","middle")
+          .text(function(d) { return d.properties.NAME; });
      
 };
 
